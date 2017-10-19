@@ -1,6 +1,8 @@
 # turing-simulator
 A Turing Machine Simulator, can be programmed
 
+View this README in raw for better indentation.
+
 A sample turing program that accepts a string of '0's and '1's that ends with a 0:
 
 '(;; State q0
