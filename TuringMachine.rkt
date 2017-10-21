@@ -8,8 +8,8 @@
 ;; INPUT is a scheme list of symbols/strings/numbers which the program will
 ;; run on.
 ;;
-;; TURING-PROGRAM must specify the list of all states with transitions and start
-;; state.
+;; TURING-PROGRAM must specify the list of all states with transitions. The
+;; start state is the first state in the list.
 ;;
 ;; Sample Turing Program:
 ;;(make-tp
@@ -29,10 +29,10 @@
 
 ;;------------------------Definition of a TuringProgram-------------------------
 
-;; A TuringProgram is a (make-tp [List-of State] State)
-(define-struct tp [states start])
-;; states is the list of all states except 'accept and 'reject
-;; start is the start state
+;; A TuringProgram is one of:
+;; - (cons State empty)
+;; - (cons State TuringProgram)
+;; i.e. a TuringProgram is a non-empty list of states
 
 ;; A State is one of
 ;; - 'accept
@@ -70,10 +70,10 @@
 
 (define STATE1 (cons 'q1 LOT1))
 
-(define PROGRAM1 (make-tp (list STATE1) STATE1))
+(define PROGRAM1 (list STATE1))
 
 ;; Program 1, rewritten for better visibiity as Program 2
-(define PROG2
+(define PROGRAM2
   '(; STATE1, the only state used for this turing machine
     (q1 (0 0 R q1)
         (_ _ R accept)
@@ -81,8 +81,6 @@
 
     ; Dummy State, not used
     (q0 (* * R reject))))
-
-(define PROGRAM2 (make-tp PROG2 (first PROG2)))
 
 ;; Predicates
 
@@ -249,8 +247,8 @@
 ;; Simulates a TuringMachine running the given program on given input
 (define (start program input)
   (big-bang (make-tm (make-tape '(_) input)
-                     (tp-start program)
-                     (cons 'accept (cons 'reject (tp-states program))))
+                     (first program)
+                     (cons 'accept (cons 'reject program)))
             [on-key handle-key]
             [to-draw draw-world]))
 
