@@ -15,6 +15,11 @@ A sample turing program that accepts a string of '0's and '1's that ends with a 
       (1 1 R q1)
       (* * R reject)))
 
+Every State is of the form:
+'(<State-name> (<Symbol Read> <Symbol to write> <Direction to move read/write head> <next state>)
+               (<Symbol Read> <Symbol to write> <Direction to move read/write head> <next state>)
+               ...)
+
 This program is written in ISL, a functional programming language meant for teaching. It is a subset of Racket and can be obtained by installing the IDE DrRacket.
 
 To run the program, open TuringMachine.rkt in DrRacket and read the instructions.
