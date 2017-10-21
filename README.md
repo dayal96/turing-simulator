@@ -16,8 +16,8 @@ A sample turing program that accepts a string of '0's and '1's that ends with a 
       (* * R reject)))
 
 Every State is of the form:
-'(<State-name> (<Symbol Read> <Symbol to write> <Direction to move read/write head> <next state>)
-               (<Symbol Read> <Symbol to write> <Direction to move read/write head> <next state>)
+'(\[State-name\] (\<Symbol Read\> \<Symbol to write\> \<Direction to move read/write head\> \<next state\>)
+               (\<Symbol Read\> \<Symbol to write\> \<Direction to move read/write head\> \<next state\>)
                ...)
 
 This program is written in ISL, a functional programming language meant for teaching. It is a subset of Racket and can be obtained by installing the IDE DrRacket.
